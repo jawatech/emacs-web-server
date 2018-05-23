@@ -732,7 +732,7 @@ element is the fragment."
 
 (defun httpd-serve-root (proc root uri-path &optional request)
   "Securely serve a file from ROOT from under PATH."
-  (let* ((path (httpd-gen-path uri-path root))
+  (let* ((path (httpd-unhex (httpd-gen-path uri-path root)))
          (status (httpd-status path)))
     (cond
      ((not (= status 200))    (httpd-error          proc status))
